@@ -1,9 +1,9 @@
 class CreateAdminService
   def call
-    User.find_or_create_by!(email: Rails.application.secrets.admin_email,
-                            name: Rails.application.secrets.admin_name) do |user|
-      user.password = Rails.application.secrets.admin_password
-      user.password_confirmation = Rails.application.secrets.admin_password
+    User.find_or_create_by!(email: 'arjun@aceteksolutions.com',
+                            name: 'arjun_verma') do |user|
+      user.password = 'admin_root'
+      user.password_confirmation = 'admin_root'
       user.admin!
     end
   end

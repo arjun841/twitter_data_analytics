@@ -4,8 +4,9 @@ source 'https://rubygems.org'
 ruby '2.4.0'
 
 # General list of gems
-gem 'rails', '5.0.2'
-gem 'pg'
+gem 'rails', '5.0.1'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'mysql2', '~>0.4.0'
 gem 'puma'
 gem 'sass-rails'
 gem 'uglifier'
@@ -13,7 +14,6 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails'
 gem 'devise'
 gem 'pundit'
@@ -65,7 +65,6 @@ end
 
 # Both Test and Development env gems
 group :development, :test do
-  gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop'
