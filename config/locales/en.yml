@@ -21,9 +21,9 @@
 
 en:
   navigation:
-    main_title: AdminLTE Template
+    main_title: Twitter Data Analytics
     root: Home
     admin: Admin
   home:
-    title: AdminLTE Rails Template.
-    subtitle: This is just a simple Rails template application of an admin panel with the <a href="https://almsaeedstudio.com/">AdminLTE</a> theme integrated to use as a starting point for your application
+    title: NLP for Twitter Data
+    subtitle: This is just a simple Rails application, created as a seperate panel to contain all NLP dashboards
