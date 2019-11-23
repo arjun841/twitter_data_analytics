@@ -1,7 +1,7 @@
 class CreateTweetAnalytics < ActiveRecord::Migration[5.0]
   def change
     create_table :tweet_analytics do |t|
-      t.string, :tweet_id
+      t.string :tweet_id
       t.string :text
       t.string :translated_text
       t.string :language
