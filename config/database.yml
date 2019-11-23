@@ -1,0 +1,20 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: xhxnun39z8ol693h
+  pool: 5
+  timeout: 5000
+  username: zciz0kpnix47rb6x
+  password: i5ma50yprzv6ywlk
+  host: ffn96u87j5ogvehy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+  port: 3306
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: xhxnun39z8ol693h
+  pool: 5
+  timeout: 5000
+  username: zciz0kpnix47rb6x
+  password: i5ma50yprzv6ywlk
+  host: ffn96u87j5ogvehy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+  port: 3306
