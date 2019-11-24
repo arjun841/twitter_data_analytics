@@ -28,6 +28,9 @@
         <div class="box-footer">
             <%= f.submit :search, { class: "btn btn-primary" } %>
             <%= link_to 'reset', admin_tweet_analytics_path, class: "btn btn-primary" %>
+            <div class="pull-right">
+              <%= page_entries_info @tweet_analytics_data %>
+            </div>
           <% end %>
         </div>
       </div>
