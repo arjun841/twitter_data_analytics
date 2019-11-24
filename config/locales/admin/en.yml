@@ -4,7 +4,7 @@ en:
       main_navigation: MAIN NAVIGATION
       administration: ADMINISTRATION
     index:
-      title: Dashboard
+      title: Twitter Data Analytics Region Wise [SENTIMENT]
       body:  Twitter data analytics, shown region wise
       users:
       create:
