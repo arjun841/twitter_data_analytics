@@ -1,0 +1,87 @@
+<div class="row">
+
+<div class= "col-md-12">
+    <div class="box box-primary">
+      <div class="box-body">
+          <div class="row">
+            <%= search_form_for @q, url: 'tweet_analytics' do |f| %>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= f.label :text %>
+                  <%= f.search_field :text_cont, { class: 'form-control' } %>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= f.label :sentiment %>
+                  <%= f.search_field :sentiment_eq, { class: 'form-control' } %>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= f.label :entity %>
+                  <%= f.search_field :entity_eq, { class: 'form-control' } %>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="box-footer">
+            <%= f.submit :search, { class: "btn btn-primary" } %>
+            <%= link_to 'reset', admin_tweet_analytics_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  
+  <div class= "col-md-12">
+      <div class="box box-primary">
+        <div class="box-body">
+          <div id="twitter_analytic_wrapper" class="form-inline">
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="tweet_analytic_index" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Tweet ID</th>
+                      <th>Text</th>
+                      <th>Language</th>
+                      <th>Sentiment</th>
+                      <th>Entity</th>
+                      <th>Tweet Location</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @tweet_analytics_data.each do |datum| %>
+                      <tr>
+                        <td> <strong> <%= datum.tweet_id %> </strong> </td>
+                        <td> <%= datum.text %> </td>
+                        <td> <%= datum.language %> </td>
+                        <td>
+                          <% if datum.positive? %>
+                            <span class="badge bg-green">
+                          <% elsif datum.negative? %>
+                            <span class="badge bg-red">
+                          <% else %>
+                            <span class="badge bg-light-blue">
+                          <% end %>
+                            <%= datum.sentiment %>
+                          </span>
+                        </td>
+                        <td> <%= datum.entity %> </td>
+                        <td> <%= datum.tweet_location %> </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                <div class= "pull-right">
+                  <%= paginate @tweet_analytics_data %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+</div>

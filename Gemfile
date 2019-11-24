@@ -20,6 +20,8 @@ gem 'pundit'
 gem 'sendgrid'
 gem 'layer-handler'
 gem 'friendly_id'
+gem 'kaminari'
+gem 'ransack'
 
 # Only Development env gems
 group :development do

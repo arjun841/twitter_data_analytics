@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # Back admin routes start
   namespace :admin do
     resources :users
+    resources :tweet_analytics
 
     # Admin root
     root to: 'application#index'
