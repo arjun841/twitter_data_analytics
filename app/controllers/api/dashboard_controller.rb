@@ -1,7 +1,13 @@
 module Api
 	class DashboardController < BaseController
-		before_action :required_pagination, only: [:count_wrt_date_for_sentiment]
-		before_action :required_from_to_date, only: [:count_wrt_date_for_sentiment]
+		before_action :required_pagination, only: [:count_wrt_date_for_sentiment,
+												   :count_wrt_date_for_entity,
+												   :count_wrt_date_for_max_retweets,
+												   :count_wrt_date_for_max_replies]
+		before_action :required_from_to_date, only: [:count_wrt_date_for_sentiment,
+												     :count_wrt_date_for_entity,
+												     :count_wrt_date_for_max_retweets,
+												     :count_wrt_date_for_max_replies]
 
 		def test
 			render json: { message: "nicely done!" }
