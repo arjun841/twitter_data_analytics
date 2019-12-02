@@ -15,5 +15,9 @@ Rails.application.routes.draw do
 
   # Application root
   root to: 'application#home'
+  namespace :api do
+    get :test, controller: :dashboard, action: :test
+    get :count_wrt_sentiment, controller: :dashboard, action: :count_wrt_sentiment
+  end 
   # Front routes end
 end

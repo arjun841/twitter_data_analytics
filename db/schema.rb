@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125190136) do
+ActiveRecord::Schema.define(version: 20191202200353) do
+
+  create_table "tweet_analytics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "tweet_id"
+    t.string   "text",                     limit: 1000
+    t.string   "translated_text",          limit: 1000
+    t.string   "language"
+    t.string   "sentiment"
+    t.string   "tweet_location"
+    t.string   "entity"
+    t.string   "replied_to_tweet_id"
+    t.string   "sentiment_neutral_score"
+    t.string   "sentiment_positive_score"
+    t.string   "sentiment_negative_score"
+    t.string   "sentiment_mixed_score"
+    t.integer  "retweet_count"
+    t.integer  "favourites_count"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "email",                  default: "", null: false
@@ -27,6 +46,7 @@ ActiveRecord::Schema.define(version: 20161125190136) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.integer  "role"
+    t.string   "token"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
