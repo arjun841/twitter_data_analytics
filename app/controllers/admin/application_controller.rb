@@ -9,6 +9,32 @@ module Admin
     def index
     end
 
+    def overall_sentiment_analytics
+    end
+
+    def dashboard_count_wrt_date_for_max_retweets
+      from_date = Date.today - 25.days
+      to_date = Date.today
+      range = (from_date..to_date)
+      metric = {}
+      range.each do |date|
+        metric[date.to_s] = {}
+        tweet_id_metric = TweetAnalytic.where("DATE(created_at) = ?", date.to_s).order(retweet_count: :desc).first
+        if tweet_id_metric
+          metric[date.to_s][tweet_id_metric.tweet_id] = tweet_id_metric.retweet_count.to_i
+        else
+          metric[date.to_s]["NONE"] = 0
+        end
+      end
+      retweet_metric_data = []
+      metric.each do |date, value|
+        value.each do |tweet_id, count|
+          retweet_metric_data << [tweet_id, date, count]
+        end
+      end
+      @analytic_data = retweet_metric_data
+    end
+
     def dashboard_count_wrt_date_for_entity
       from_date = Date.today - 25.days
       to_date = Date.today
@@ -58,7 +84,6 @@ module Admin
           sentiment_metric_data[sentiment.to_s] << [date, count]
         end
       end
-      puts sentiment_metric_data
       @analytic_data = sentiment_metric_data
     end 
 

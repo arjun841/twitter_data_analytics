@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191202200353) do
+ActiveRecord::Schema.define(version: 20191203043821) do
 
   create_table "tweet_analytics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "tweet_id"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20191202200353) do
     t.integer  "favourites_count"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.index ["created_at"], name: "index_tweet_analytics_on_created_at", using: :btree
+    t.index ["entity"], name: "index_tweet_analytics_on_entity", using: :btree
+    t.index ["favourites_count"], name: "index_tweet_analytics_on_favourites_count", using: :btree
+    t.index ["replied_to_tweet_id"], name: "index_tweet_analytics_on_replied_to_tweet_id", using: :btree
+    t.index ["retweet_count"], name: "index_tweet_analytics_on_retweet_count", using: :btree
+    t.index ["sentiment"], name: "index_tweet_analytics_on_sentiment", using: :btree
+    t.index ["tweet_id"], name: "index_tweet_analytics_on_tweet_id", using: :btree
+    t.index ["tweet_location"], name: "index_tweet_analytics_on_tweet_location", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|

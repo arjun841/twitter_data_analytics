@@ -1,0 +1,38 @@
+<script>
+  data = [];
+  function gd(year, month, day) {
+    return new Date(year, month, day).getTime();
+  }
+  total_line_chart_data = {};
+  <% @analytic_data.each do |val| %>
+    <% split_date = val[1].split('-') %>
+    total_line_chart_data[gd('<%=split_date[0]%>', '<%=split_date[1]%>', '<%=split_date[2]%>')] = '<%= val[0] %>';
+  <% end %>
+  var line_data = {
+    label: " TWEET ID",
+    data : [<% @analytic_data.each do |val| %>
+      <% split_date = val[1].split('-') %>
+      [gd('<%=split_date[0]%>', '<%=split_date[1]%>', '<%=split_date[2]%>'), <%= val[2] %>],
+    <% end %>
+    ],
+    color: '#3c8dbc'
+  };
+  line_chart_data = [line_data];
+</script>
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h2 class="box-title"> Date & Frequency [MAX RETWEETS, for the last 25 days] </h2>
+      </div>
+
+      <div class="box-body">
+      <div id="line-chart" style="height: 750px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
