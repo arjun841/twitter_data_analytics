@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
     # Admin root
     root to: 'application#index'
+    get :dashboard_count_wrt_date_for_entity, controller: :application, action: :dashboard_count_wrt_date_for_entity
+    get :dashboard_count_wrt_date_for_sentiment, controller: :application, action: :dashboard_count_wrt_date_for_sentiment
   end
   # Back admin routes end
 

@@ -1,0 +1,41 @@
+<script>
+  data = [];
+  function gd(year, month, day) {
+    return new Date(year, month, day).getTime();
+  }
+  var line_chart_sentiment_colors = {
+    "NEUTRAL": '#3c8dbc',
+    "POSITIVE": '#00a65a',
+    "NEGATIVE": '#f56954'
+  };
+<% @analytic_data.each do |key, val| %>
+  var line_data = {
+    label: " <%= key %>",
+    data : [<% val.each do |date, count| %>
+      <% split_date = date.split('-') %>
+      [gd('<%=split_date[0]%>', '<%=split_date[1]%>', '<%=split_date[2]%>'), <%= count %>],
+    <% end %>
+    ],
+    color: line_chart_sentiment_colors["<%= key %>"]
+  };
+    data.push(line_data);
+<% end %>
+  line_chart_data = data;
+</script>
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h2 class="box-title">Date & Frequency [SENTIMENTS, for the last 25 days]</h2>
+      </div>
+
+      <div class="box-body">
+      <div id="line-chart" style="height: 750px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

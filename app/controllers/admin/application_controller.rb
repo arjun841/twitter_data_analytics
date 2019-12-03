@@ -9,6 +9,59 @@ module Admin
     def index
     end
 
+    def dashboard_count_wrt_date_for_entity
+      from_date = Date.today - 25.days
+      to_date = Date.today
+      range = (from_date..to_date)
+      metric = {}
+      range.each do |date|
+        date_metric = { "COMMERCIAL_ITEM" => 0, "DATE" => 0, "EVENT" => 0,
+                        "LOCATION" => 0, "ORGANIZATION" => 0, "OTHER" =>0,
+                        "PERSON" => 0, "QUANTITY" => 0, "TITLE" => 0 }
+        per_date_metric = TweetAnalytic.where("DATE(created_at) = ?", date.to_s).group_by(&:entity).inject({}) do |h, (entity, value)|
+          h[entity] = value.to_a.collect(&:tweet_id).uniq.count
+          h
+        end
+        date_metric.merge!(per_date_metric)
+        date_metric.delete(nil)
+        metric[date.to_s] = date_metric
+      end
+      entity_metric_data = {}
+      metric.each do |date, value|
+        value.each do |entity, count|
+          entity_metric_data[entity.to_s] ||= []
+          entity_metric_data[entity.to_s] << [date, count]
+        end
+      end
+      @analytic_data = entity_metric_data
+    end
+
+    def dashboard_count_wrt_date_for_sentiment
+      from_date = Date.today - 25.days
+      to_date = Date.today
+      range = (from_date..to_date)
+      metric = {}
+      range.each do |date|
+        date_metric = { "NEUTRAL": 0, "POSITIVE": 0, "NEGATIVE": 0 }
+        per_date_metric = TweetAnalytic.where("DATE(created_at) = ?", date.to_s).group_by(&:sentiment).inject({}) do |h, (sentiment, value)|
+          h[sentiment] = value.to_a.collect(&:tweet_id).uniq.count
+          h
+        end
+        date_metric.merge!(per_date_metric)
+        date_metric.delete(nil)
+        metric[date.to_s] = date_metric
+      end
+      sentiment_metric_data = {}
+      metric.each do |date, value|
+        value.each do |sentiment, count|
+          sentiment_metric_data[sentiment.to_s] ||= []
+          sentiment_metric_data[sentiment.to_s] << [date, count]
+        end
+      end
+      puts sentiment_metric_data
+      @analytic_data = sentiment_metric_data
+    end 
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:account_update) do |u|
         u.permit(:password, :password_confirmation, :current_password, :name)

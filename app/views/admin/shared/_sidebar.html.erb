@@ -13,7 +13,20 @@
 
     <ul class="sidebar-menu">
       <li class="header"><%= t('admin.sidebar.main_navigation') %></li>
-      <li> <%= link_to '<i class="fa fa-dashboard"></i><span>Dashboard</span>'.html_safe, admin_root_path %> </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i>
+          <span>Dashboard</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> Sentiment Analytics'.html_safe, admin_dashboard_count_wrt_date_for_sentiment_path %> </li>
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> Entity Analytics'.html_safe, admin_dashboard_count_wrt_date_for_entity_path %> </li>
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> Location Analytics'.html_safe, admin_root_path %> </li>
+        </ul>
+      </li>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-line-chart"></i>
